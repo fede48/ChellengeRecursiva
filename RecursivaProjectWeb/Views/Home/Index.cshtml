@@ -1,0 +1,79 @@
+﻿@model  RecursivaProjectWeb.Models.UploadFileModel
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .navbar {
+            display: block;
+            float: right;
+        }
+
+
+
+        i {
+            font-size: 100px;
+        }
+
+        #upload-file {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%">
+        <div style="width: 30%">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { id = "form", encType = "multipart/form-data" }))
+                    {
+
+                        <i class="icon-plus"></i><span class="name">No file selected</span>
+                        @Html.TextBoxFor(m => m.Files, new { type = "file", name = "Files", id = "upload-file" })<br /><br />
+                        <button type="submit" class="btn btn-success btn-lg" id="enviar">Enviar</button>
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+
+</html>
+
+<script>
+
+    $(function () {
+        $('#enviar').click(function () {
+            if ($('#upload-file')[0].value == "") {
+                alert("debe haber un archivo cargado");
+                return false;
+            }
+        });
+    });
+
+
+    $("i").click(function () {
+        $("input[type='file']").trigger('click');
+    });
+
+
+    $("#upload-file").change(function (ev) {
+        var filename = $(this).val();
+        if (filename.match(/(\.csv$)/)) {
+            var val = $(this).val();
+            $(this).siblings('span').text(val.substring(val.lastIndexOf("\\") + 1, val.length));
+        } else {
+            alert("formato no permitido");
+            $(this).val("");
+            $(this).siblings('span').text("No file selected");
+        }
+    });
+
+</script>
+

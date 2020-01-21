@@ -1,0 +1,111 @@
+﻿
+@model  RecursivaProjectWeb.Models.Items
+@{
+    ViewBag.Title = "Data";
+}
+
+<style>
+
+    strong {
+        font-size: 20px;
+    }
+
+    h2
+    {
+        color:green;
+    }
+
+</style>
+
+<strong>Cantidad de Personas: <span style="color:blue;">@Model.CantTotalPersonas</span></strong><br /><br />
+<strong>Promedio Edad Socios de Racing: <span style="color:blue;">@Model.PromedioEdadClubRacing</span></strong>
+
+<h2>  Item 3 Enunciado</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Club</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.item1 != null && Model.item1.Count > 0)
+        {
+            int contador = 1;
+            foreach (var item in Model.item1)
+            {
+                <tr>
+                    <th scope="row">@contador</th>
+                    <td>@item.Nombre</td>
+                    <td>@item.Edad</td>
+                    <td>@item.Club</td>
+                </tr>
+                contador++;
+            }
+        }
+    </tbody>
+</table>
+
+
+<h2>  Item 4 Enunciado</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Club</th>
+            <th scope="col">Cantidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.item2 != null && Model.item2.Count > 0)
+        {
+            int contador = 1;
+            foreach (var item in Model.item2)
+            {
+                <tr>
+                    <th scope="row">@contador</th>
+                    <td>@item.Club</td>
+                    <td>@item.Cantidad</td>
+                </tr>
+                contador++;
+            }
+        }
+    </tbody>
+</table>
+
+<h2>  Item 5 Enunciado</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Club</th>
+            <th scope="col">Cantidad Socios</th>
+            <th scope="col">Promedio Edad Socios</th>
+            <th scope="col">Menor Edad Club</th>
+            <th scope="col">Mayor Edad Club</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.item3 != null && Model.item3.Count > 0)
+        {
+            int contador = 1;
+            foreach (var item in Model.item3)
+            {
+                <tr>
+                    <th scope="row">@contador</th>
+                    <td>@item.Club</td>
+                    <td>@item.CantSocios</td>
+                    <td>@item.PromedioEdadSocios</td>
+                    <td>@item.MenorEdadClub</td>
+                    <td>@item.MayorEdadClub</td>
+                </tr>
+                contador++;
+            }
+        }
+    </tbody>
+</table>
+
+
+
